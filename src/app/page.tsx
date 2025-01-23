@@ -1,8 +1,8 @@
-import { FAQ } from '@/components/landing-page/FAQ'
-import { Header } from '@/components/landing-page/header'
-import { Hero } from '@/components/landing-page/hero'
-import { Pricing } from '@/components/landing-page/pricing'
-import { VideoExplanation } from '@/components/landing-page/video-explanation'
+import { FAQ } from '@/app/components/landing-page/FAQ'
+import { Header } from '@/app/components/landing-page/header'
+import { Hero } from '@/app/components/landing-page/hero'
+import { Pricing } from '@/app/components/landing-page/pricing'
+import { VideoExplanation } from '@/app/components/landing-page/video-explanation'
 
 export default function Home() {
   return (
