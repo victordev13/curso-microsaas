@@ -1,3 +1,5 @@
+import { Button } from '../ui/button'
+import { Input } from '../ui/input'
 import { ProjectCard } from './project-card'
 import { TotalVisits } from './total-visits'
 import { UserCard } from './user-card'
@@ -16,8 +18,8 @@ export function Hero() {
         Acompanhe o engajamento com Analytics, e fique por dentro dos cliques
         <div className="item-center gap-2 w-full -mt-[10vh]"></div>
         <div className="text-white text-xl">eudev.test</div>
-        <input type="text" />
-        <button>Criar agora</button>
+        <Input type="text" />
+        <Button>Criar agora</Button>
       </div>
 
       <div className="w-full flex items-center justify-center bg-[radial-gradient(circle_at_50%_50%, #4b2dbb, transparent_55%)]">
