@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${redhatDisplay.className} bg-background—primary text-content-body`}
+        className={`${redhatDisplay.className} bg-background-primary text-content-body`}
       >
         {children}
       </body>
