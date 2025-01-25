@@ -3,7 +3,7 @@ import { Github, Instagram, Linkedin, Plus, Twitter } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Hr } from '../ui/Hr'
 
-export default function UserCard() {
+export function UserCard() {
   const socialMedia = [
     { Icon: Github, link: 'https://github.com' },
     { Icon: Instagram, link: 'https://instagram.com' },

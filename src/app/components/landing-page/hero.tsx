@@ -1,15 +1,16 @@
+import { ProjectCard } from '../common/project-card'
 import { TotalVisits } from '../common/total-visits'
-import UserCard from '../common/user-card'
+import { UserCard } from '../common/user-card'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
-import { ProjectCard } from './project-card'
 
 export function Hero() {
   return (
     <div className="flex h-screen">
       <div className="w-full flex flex-col gap-2 mt-[35vh]">
         <h1 className="text-5xl font-bold text-white leading-[64px]">
-          Seus projetos e redes sociais em um único link
+          Seus projetos e redes
+          <br /> sociais em um único link
         </h1>
         <h2 className="text-xl leading-6">
           Crie sua própria página de projetos e compartilhe eles com o mundo.
