@@ -1,8 +1,8 @@
+import { TotalVisits } from '../common/total-visits'
 import UserCard from '../common/user-card'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { ProjectCard } from './project-card'
-import { TotalVisits } from './total-visits'
 
 export function Hero() {
   return (
