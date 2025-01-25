@@ -7,7 +7,6 @@ import { VideoExplanation } from '@/app/components/landing-page/video-explanatio
 export default function Home() {
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="text-white">Hello World</div>
       <Header />
       <Hero />
       <VideoExplanation />

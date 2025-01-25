@@ -18,7 +18,7 @@ export function Button({
     <button
       {...props}
       className={mergeClasses(
-        'p-3 text-white rounded-xl font-bold whitespace-nowrap hover:opacity-95 disabled:opacity-70',
+        'py-3 px-5 text-white rounded-xl font-bold whitespace-nowrap hover:opacity-95 disabled:opacity-70',
         variantStyles[variant],
         props.className,
       )}
