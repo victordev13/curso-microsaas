@@ -1,7 +1,7 @@
 import {
   PERIODO_TESTE_EM_DIAS,
-  VALOR_ANUAL,
   VALOR_MENSAL,
+  VALOR_VITALICIO,
 } from '@/app/lib/config'
 import { Button } from '../ui/button'
 
@@ -48,7 +48,7 @@ export function Pricing() {
               </div>
               <div className="flex items-center gap-1">
                 <span className="text-white font-bold text-[48px]">
-                  {VALOR_ANUAL}
+                  {VALOR_VITALICIO}
                 </span>
               </div>
               <Button>Assinar</Button>

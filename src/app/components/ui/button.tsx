@@ -9,19 +9,21 @@ const variantStyles = {
     'border-border-primary transition-colors hover:border-border-secondary active:border-border-tertiary',
 }
 
+type ButtonProps = {
+  children: React.ReactNode
+  variant?: 'primary' | 'secondary' | 'ghost'
+} & React.ButtonHTMLAttributes<HTMLButtonElement>
+
 export function Button({
   children,
   variant = 'primary',
   ...props
-}: {
-  children: React.ReactNode
-  variant?: 'primary' | 'secondary' | 'ghost'
-} & React.ButtonHTMLAttributes<HTMLButtonElement>) {
+}: ButtonProps) {
   return (
     <button
       {...props}
       className={mergeClasses(
-        'py-3 px-5 text-white  rounded-xl font-bold whitespace-nowrap hover:opacity-95 disabled:opacity-70',
+        'py-3 px-5 text-white  rounded-xl font-bold whitespace-nowrap hover:opacity-95 disabled:opacity-70 h-fit',
         variantStyles[variant],
         props.className,
       )}
