@@ -1,9 +1,12 @@
 import { mergeClasses } from '@/app/lib/utils'
 
 const variantStyles = {
-  primary: 'bg-accent-purple',
-  secondary: 'bg-background-tertiary',
-  ghost: 'border-border-primary',
+  primary:
+    'bg-accent-purple transition-colors hover:bg-accent-purple-dark active:bg-accent-purple-darker',
+  secondary:
+    'bg-background-tertiary transition-colors hover:bg-background-secondary active:bg-background-primary',
+  ghost:
+    'border-border-primary transition-colors hover:border-border-secondary active:border-border-tertiary',
 }
 
 export function Button({
@@ -18,7 +21,7 @@ export function Button({
     <button
       {...props}
       className={mergeClasses(
-        'py-3 px-5 text-white rounded-xl font-bold whitespace-nowrap hover:opacity-95 disabled:opacity-70',
+        'py-3 px-5 text-white  rounded-xl font-bold whitespace-nowrap hover:opacity-95 disabled:opacity-70',
         variantStyles[variant],
         props.className,
       )}
