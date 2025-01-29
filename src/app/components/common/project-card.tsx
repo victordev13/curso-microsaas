@@ -5,7 +5,7 @@ export function ProjectCard() {
   return (
     <div
       className={mergeClasses(
-        'w-[430px] h-[132px] flex gap-5 bg-background-secondary p-3 rounded-[20px] border border-transparent',
+        'w-[340px] h-[132px] flex gap-5 bg-background-secondary p-3 rounded-[20px] border border-transparent',
         ' hover:border-border-secondary',
       )}
     >
