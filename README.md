@@ -7,6 +7,7 @@ The objective of this project is to provide an page for developers to showcase t
 ## Built With
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Firebase](https://firebase.google.com/)
 
 ## Getting Started
 Follow the steps below to set up the project locally:
