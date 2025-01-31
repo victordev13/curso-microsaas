@@ -14,7 +14,7 @@ export default function Criar() {
         </div>
 
         <form className="w-full flex items-center gap-2">
-          <span className="text-white">eudev.test/</span>
+          <span className="text-white">soueu.dev/</span>
           <Input />
           <Button className="w-[126px]">Criar</Button>
         </form>

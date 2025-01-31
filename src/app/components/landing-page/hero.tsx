@@ -18,7 +18,7 @@ export function Hero() {
           Acompanhe o engajamento com Analytics de cliques
         </h2>
         <div className="flex items-center gap-2 w-full mt-24">
-          <span className="text-white text-xl">eudev.test/</span>
+          <span className="text-white text-xl">soueu.dev/</span>
           <Input placeholder="Seu link" />
           <Button>Criar agora</Button>
         </div>
