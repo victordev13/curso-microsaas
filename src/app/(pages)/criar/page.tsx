@@ -1,7 +1,7 @@
 import { Rocket } from 'lucide-react'
-import { Header } from '../components/landing-page/header'
-import { Button } from '../components/ui/button'
-import { Input } from '../components/ui/input'
+import { Header } from '@/app/components/landing-page/header'
+import { Button } from '@/app/components/ui/button'
+import { Input } from '@/app/components/ui/input'
 
 export default function Criar() {
   return (

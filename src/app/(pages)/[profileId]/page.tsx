@@ -1,8 +1,8 @@
 import { Plus } from 'lucide-react'
 import Link from 'next/link'
-import { ProjectCard } from '../components/common/project-card'
-import { TotalVisits } from '../components/common/total-visits'
-import { UserCard } from '../components/common/user-card'
+import { ProjectCard } from '../../components/common/project-card'
+import { TotalVisits } from '../../components/common/total-visits'
+import { UserCard } from '../../components/common/user-card'
 
 interface DashboardProps {
   params: Promise<{ profileId: string }>
