@@ -1,8 +1,11 @@
-import { Plus } from 'lucide-react'
 import Link from 'next/link'
 import { ProjectCard } from '../../components/common/project-card'
 import { TotalVisits } from '../../components/common/total-visits'
 import { UserCard } from '../../components/common/user-card'
+import { getProfileData } from '@/app/services/get-profile-data'
+import { notFound } from 'next/navigation'
+import { auth } from '@/app/lib/auth'
+import { NewProjectButton } from '@/app/components/dashboard/new-project-button'
 
 interface DashboardProps {
   params: Promise<{ profileId: string }>
@@ -10,6 +13,18 @@ interface DashboardProps {
 
 export default async function Dashboard({ params }: DashboardProps) {
   const { profileId } = await params
+
+  const profileData = await getProfileData(profileId)
+  if (!profileData) {
+    return notFound()
+  }
+
+  const session = await auth()
+  const isOwner = session?.user?.id === profileData.userId
+
+  // TODO: get projects
+  // TODO: get total visits
+  // TODO: redirect to upgrade if trial is ended
 
   return (
     <div className="relative h-screen p-20 flex overflow-hidden">
@@ -32,10 +47,7 @@ export default async function Dashboard({ params }: DashboardProps) {
         <ProjectCard />
         <ProjectCard />
         <ProjectCard />
-        <button className="w-[340px] h-[132px] rounded-[20px] bg-background-secondary flex items-center gap-2 justify-center transition-all hover:border border-dashed hover:bg-background-tertiary active:bg-background-primary">
-          <Plus className="size-10 text-accent-green" />
-          <span>Novo Projeto</span>
-        </button>
+        {isOwner && <NewProjectButton profileId={profileId} />}
       </div>
       <div className="absolute bottom-4 right-0 left-0  w-min mx-auto">
         <TotalVisits />

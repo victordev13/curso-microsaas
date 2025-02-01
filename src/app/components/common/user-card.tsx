@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Github, Instagram, Linkedin, Plus, Twitter } from 'lucide-react'
 import { Button } from '../ui/button'
-import { Hr } from '../ui/Hr'
+import { Hr } from '@/app/components/ui/hr'
 
 export function UserCard() {
   const socialMedia = [

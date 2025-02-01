@@ -1,6 +1,6 @@
 import { mergeClasses } from '@/app/lib/utils'
 import { TrendingUp } from 'lucide-react'
-import { Hr } from '../ui/Hr'
+import { Hr } from '@/app/components/ui/hr'
 
 export function TotalVisits() {
   return (
