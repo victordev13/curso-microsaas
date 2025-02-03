@@ -6,16 +6,16 @@ import { useRef } from 'react'
 export function Modal({
   children,
   isOpen,
-  setIsOpen,
+  onClose,
 }: {
   children: React.ReactNode
   isOpen: boolean
-  setIsOpen: (isOpen: boolean) => void
+  onClose: () => void
 }) {
   const ref = useRef<HTMLDivElement>(null)
 
   useOnClickOutside(ref, () => {
-    setIsOpen(false)
+    onClose()
   })
 
   if (!isOpen) return null
