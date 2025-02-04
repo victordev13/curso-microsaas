@@ -56,7 +56,7 @@ async function uploadImage(
   const projectImageBuffer = Buffer.from(await file.arrayBuffer())
   await storageRef.save(projectImageBuffer)
 
-  const imagePath = storageRef.publicUrl()
+  const imagePath = storageRef.name
 
   return { path: imagePath }
 }
