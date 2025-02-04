@@ -6,6 +6,8 @@ import { getProfileData } from '@/app/services/get-profile-data'
 import { notFound } from 'next/navigation'
 import { auth } from '@/app/lib/auth'
 import { NewProjectButton } from '@/app/components/dashboard/new-project-button'
+import { getProfileProjects } from '@/app/services/get-profile-projects'
+import { getFileURL } from '@/app/lib/firebase'
 
 interface DashboardProps {
   params: Promise<{ profileId: string }>
@@ -22,7 +24,7 @@ export default async function Dashboard({ params }: DashboardProps) {
   const session = await auth()
   const isOwner = session?.user?.id === profileData.userId
 
-  // TODO: get projects
+  const projects = await getProfileProjects(profileId)
   // TODO: get total visits
   // TODO: redirect to upgrade if trial is ended
 
@@ -41,12 +43,14 @@ export default async function Dashboard({ params }: DashboardProps) {
         <UserCard />
       </div>
       <div className="w-full flex justify-center gap-4 content-start flex-wrap overflow-y-auto">
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
+        {projects.map(async (project) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            isOwner={isOwner}
+            projectImage={await getFileURL(project.imagePath)}
+          />
+        ))}
         {isOwner && <NewProjectButton profileId={profileId} />}
       </div>
       <div className="absolute bottom-4 right-0 left-0  w-min mx-auto">
