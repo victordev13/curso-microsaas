@@ -40,7 +40,7 @@ export default async function Dashboard({ params }: DashboardProps) {
         </Link>
       </div>
       <div className="w-1/2 flex justify-center h-min">
-        <UserCard />
+        <UserCard isOwner={isOwner} />
       </div>
       <div className="w-full flex justify-center gap-4 content-start flex-wrap overflow-y-auto">
         {projects.map(async (project) => (

@@ -17,4 +17,4 @@ export type FormReturn<T> = {
   errors?: Partial<{
     [K in keyof T]: string | null
   }>
-} | undefined
+} | undefined | void

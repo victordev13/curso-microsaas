@@ -2,14 +2,14 @@
 import { Github, Instagram, Linkedin, Plus, Twitter } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Hr } from '@/app/components/ui/hr'
+import { EditSocialLinksButton } from '@/app/components/dashboard/edit-social-links-button'
 
-export function UserCard() {
+export function UserCard({ isOwner }: { isOwner: boolean }) {
   const socialMedia = [
     { Icon: Github, link: 'https://github.com' },
     { Icon: Instagram, link: 'https://instagram.com' },
     { Icon: Linkedin, link: 'https://linkedin.com' },
     { Icon: Twitter, link: 'https://twitter.com' },
-    { Icon: Plus, link: '#' },
   ]
 
   return (
@@ -45,6 +45,7 @@ export function UserCard() {
               <Icon />
             </a>
           ))}
+          {isOwner && <EditSocialLinksButton />}
         </div>
         <Hr className="my-3" />
       </div>

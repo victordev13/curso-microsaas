@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable @next/next/no-img-element */
 import { mergeClasses } from '@/app/lib/utils'
 import { Project } from '@/app/services/get-profile-projects'
