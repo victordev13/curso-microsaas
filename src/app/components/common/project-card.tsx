@@ -1,11 +1,16 @@
 'use client'
 /* eslint-disable @next/next/no-img-element */
 import { mergeClasses } from '@/app/lib/utils'
-import { Project } from '@/app/services/get-profile-projects'
 import Link from 'next/link'
 
 interface ProjectCardProps {
-  project: Project
+  project: {
+    projectName: string
+    projectDescription: string
+    projectUrl?: string
+    imagePath?: string
+    totalVisits?: number
+  }
   isOwner: boolean
   projectImage: string
 }
@@ -15,9 +20,11 @@ export function ProjectCard({
   projectImage,
   isOwner,
 }: ProjectCardProps) {
-  const projectUrl = project.projectUrl.startsWith('http')
-    ? project.projectUrl
-    : `https://${project.projectUrl}`
+  const projectUrl = project.projectUrl
+    ? project.projectUrl?.startsWith('http')
+      ? project.projectUrl
+      : `https://${project.projectUrl}`
+    : null
 
   function handleClickProject() {
     // TODO: Implementar contagem de cliques
@@ -25,7 +32,7 @@ export function ProjectCard({
 
   return (
     <Link
-      href={projectUrl}
+      href={projectUrl || '#'}
       target="_blank"
       rel="noreferrer noopener"
       onClick={handleClickProject}

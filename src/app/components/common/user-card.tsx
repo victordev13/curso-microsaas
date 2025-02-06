@@ -4,7 +4,13 @@ import { Button } from '../ui/button'
 import { Hr } from '@/app/components/ui/hr'
 import { EditSocialLinksButton } from '@/app/components/dashboard/edit-social-links-button'
 
-export function UserCard({ isOwner }: { isOwner: boolean }) {
+export function UserCard({
+  isOwner = false,
+  isEditable = false,
+}: {
+  isOwner?: boolean
+  isEditable?: boolean
+}) {
   const socialMedia = [
     { Icon: Github, link: 'https://github.com' },
     { Icon: Instagram, link: 'https://instagram.com' },
@@ -45,7 +51,7 @@ export function UserCard({ isOwner }: { isOwner: boolean }) {
               <Icon />
             </a>
           ))}
-          {isOwner && <EditSocialLinksButton />}
+          {isEditable && isOwner && <EditSocialLinksButton />}
         </div>
         <Hr className="my-3" />
       </div>

@@ -36,7 +36,7 @@ export function EditSocialLinksModal({
   }
 
   async function handleSaveSocialLinks(
-    _,
+    _: unknown,
     formData: FormData,
   ): Promise<FormReturn<SaveSocialLinksPayload>> {
     const typedFormData = formData as TypedFormData<SaveSocialLinksPayload>

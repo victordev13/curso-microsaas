@@ -1,3 +1,4 @@
+import 'server-only'
 import { db } from '@/app/lib/firebase'
 
 export interface Project {

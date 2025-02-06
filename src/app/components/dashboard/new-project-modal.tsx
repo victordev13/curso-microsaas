@@ -53,7 +53,7 @@ export function NewProjectModal({
   }
 
   async function handleCreateProject(
-    currentState,
+    currentState: unknown,
     formData: FormData,
   ): Promise<FormReturn<CreateProjectFormData>> {
     const typedFormData = formData as TypedFormData<CreateProjectFormData>
