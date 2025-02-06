@@ -5,6 +5,12 @@ export interface Profile {
   userId: string
   totalVisits: number
   createdAt: number // timestamp
+  socialMedia: {
+    github: string
+    instagram: string
+    linkedin: string
+    twitter: string
+  }
 }
 
 export async function getProfileData(
@@ -20,5 +26,6 @@ export async function getProfileData(
     userId: profile.userId,
     totalVisits: profile.totalVisits,
     createdAt: profile.createdAt,
+    socialMedia: profile.socialMedia,
   }
 }

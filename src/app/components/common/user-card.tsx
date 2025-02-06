@@ -3,21 +3,25 @@ import { Github, Instagram, Linkedin, Plus, Twitter } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Hr } from '@/app/components/ui/hr'
 import { EditSocialLinksButton } from '@/app/components/dashboard/edit-social-links-button'
+import Link from 'next/link'
+import { Profile } from '@/app/services/get-profile-data'
+
+const socialMediaIcons = {
+  github: Github,
+  instagram: Instagram,
+  linkedin: Linkedin,
+  twitter: Twitter,
+}
 
 export function UserCard({
   isOwner = false,
   isEditable = false,
+  profileData,
 }: {
   isOwner?: boolean
   isEditable?: boolean
+  profileData: Profile
 }) {
-  const socialMedia = [
-    { Icon: Github, link: 'https://github.com' },
-    { Icon: Instagram, link: 'https://instagram.com' },
-    { Icon: Linkedin, link: 'https://linkedin.com' },
-    { Icon: Twitter, link: 'https://twitter.com' },
-  ]
-
   return (
     <div className="w-[389px] flex flex-col gap-5 items-center p-10 border border-white border-opacity-10 bg-[#121212] rounded-3xl text-white">
       <div className="size-48">
@@ -41,17 +45,54 @@ export function UserCard({
       <div className="flex flex-col gap-2 w-full">
         <span className="uppercase text-xs font-medium">Links</span>
         <div className="flex gap-3">
-          {socialMedia.map(({ Icon, link }, index) => (
-            <a
-              href={link}
+          {profileData?.socialMedia?.github && (
+            <Link
+              href={profileData?.socialMedia?.github}
               target="_blank"
-              key={index}
               className="p-3 rounded-xl bg-[#1E1E1E] hover:bg-[#2E2E2E]"
             >
-              <Icon />
-            </a>
-          ))}
-          {isEditable && isOwner && <EditSocialLinksButton />}
+              <socialMediaIcons.github />
+            </Link>
+          )}
+          {profileData?.socialMedia?.instagram && (
+            <Link
+              href={profileData?.socialMedia?.instagram}
+              target="_blank"
+              className="p-3 rounded-xl bg-[#1E1E1E] hover:bg-[#2E2E2E]"
+            >
+              <socialMediaIcons.instagram />
+            </Link>
+          )}
+          {profileData?.socialMedia?.linkedin && (
+            <Link
+              href={profileData?.socialMedia?.linkedin}
+              target="_blank"
+              className="p-3 rounded-xl bg-[#1E1E1E] hover:bg-[#2E2E2E]"
+            >
+              <socialMediaIcons.linkedin />
+            </Link>
+          )}
+          {profileData?.socialMedia?.twitter && (
+            <Link
+              href={profileData?.socialMedia?.twitter}
+              target="_blank"
+              className="p-3 rounded-xl bg-[#1E1E1E] hover:bg-[#2E2E2E]"
+            >
+              <socialMediaIcons.twitter />
+            </Link>
+          )}
+          {!profileData &&
+            Object.values(socialMediaIcons).map((Icon, index) => (
+              <button
+                key={index}
+                className="p-3 rounded-xl bg-[#1E1E1E] hover:bg-[#2E2E2E]"
+              >
+                <Icon />
+              </button>
+            ))}
+          {isEditable && isOwner && (
+            <EditSocialLinksButton socialMedia={profileData.socialMedia} />
+          )}
         </div>
         <Hr className="my-3" />
       </div>

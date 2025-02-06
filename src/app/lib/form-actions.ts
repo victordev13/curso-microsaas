@@ -14,6 +14,7 @@ export interface TypedFormData<T extends { [key: string]: FormDataEntryValue }>
 }
 
 export type FormReturn<T> = {
+  error?: string,
   errors?: Partial<{
     [K in keyof T]: string | null
   }>

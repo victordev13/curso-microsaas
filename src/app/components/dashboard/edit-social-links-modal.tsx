@@ -1,33 +1,41 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 import { Github, Instagram, Linkedin, Twitter } from 'lucide-react'
 import { Modal } from '@/app/components/ui/modal'
 import { Input } from '@/app/components/ui/input'
 import { Button } from '@/app/components/ui/button'
-import { startTransition, useActionState } from 'react'
+import { startTransition, useActionState, useEffect, useState } from 'react'
 import { FormReturn, TypedFormData } from '@/app/lib/form-actions'
 import { notFound, useParams, useRouter } from 'next/navigation'
 import { updateSocialLinks } from '@/app/actions/update-social-links'
 
+export type SocialMedia = {
+  github?: string
+  instagram?: string
+  linkedin?: string
+  twitter?: string
+}
+
 interface NewProjectModalProps {
   isModalOpen: boolean
   onModalClose: () => void
+  socialMedia: SocialMedia
 }
 
-type SaveSocialLinksPayload = {
-  github: string
-  instagram: string
-  linkedin: string
-  twitter: string
-}
+type SaveSocialLinksPayload = SocialMedia
 
 export function EditSocialLinksModal({
   isModalOpen,
   onModalClose,
+  socialMedia,
 }: NewProjectModalProps) {
+  const [error, setError] = useState<string | null>(null)
+
   const router = useRouter()
 
   function handleClose() {
     onModalClose()
+    setError(null)
   }
 
   const routeParams = useParams()
@@ -41,12 +49,23 @@ export function EditSocialLinksModal({
   ): Promise<FormReturn<SaveSocialLinksPayload>> {
     const typedFormData = formData as TypedFormData<SaveSocialLinksPayload>
 
+    const github = typedFormData.get('github') as string
+    const instagram = typedFormData.get('instagram') as string
+    const linkedin = typedFormData.get('linkedin') as string
+    const twitter = typedFormData.get('twitter') as string
+
+    if (!github && !instagram && !linkedin && !twitter) {
+      return {
+        error: 'Você não informou nenhum link.',
+      }
+    }
+
     await updateSocialLinks({
       profileId: String(routeParams.profileId),
-      github: typedFormData.get('github') as string,
-      instagram: typedFormData.get('instagram') as string,
-      linkedin: typedFormData.get('linkedin') as string,
-      twitter: typedFormData.get('twitter') as string,
+      github,
+      instagram,
+      linkedin,
+      twitter,
     })
 
     startTransition(() => {
@@ -55,11 +74,18 @@ export function EditSocialLinksModal({
     })
   }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [_, handleSaveSocialMediaAction, isSubmitting] = useActionState(
+  const [formState, handleSaveSocialMediaAction, isSubmitting] = useActionState(
     handleSaveSocialLinks,
     null,
   )
+
+  useEffect(() => {
+    if (formState?.error || formState?.errors) {
+      setError(
+        formState?.error || Object.values(formState?.errors || []).join('\n'),
+      )
+    }
+  }, [formState?.error, formState?.errors])
 
   return (
     <Modal isOpen={isModalOpen} onClose={handleClose}>
@@ -69,21 +95,56 @@ export function EditSocialLinksModal({
       >
         <p className="text-white font-bold text-xl">Alterar redes sociais</p>
         <div className="flex flex-col gap-4">
+          {error && (
+            <span className="text-accent-pink">{formState?.error}</span>
+          )}
           <div className="flex items-center gap-4 w-full">
             <Github />
-            <Input type="url" name="github" disabled={isSubmitting} />
+            <Input
+              type="url"
+              name="github"
+              defaultValue={socialMedia?.github || ''}
+              placeholder="Github"
+              disabled={isSubmitting}
+              pattern="https://github\.com/.*"
+              title="Informe uma URL do GitHub"
+            />
           </div>
           <div className="flex items-center gap-4 w-full">
             <Instagram />
-            <Input type="url" name="instagram" disabled={isSubmitting} />
+            <Input
+              type="url"
+              name="instagram"
+              defaultValue={socialMedia?.instagram || ''}
+              placeholder="Instagram"
+              disabled={isSubmitting}
+              pattern="https://(www\.)?instagram\.com/.*"
+              title="Informe uma URL do Instagram"
+            />
           </div>
           <div className="flex items-center gap-4 w-full">
             <Linkedin />
-            <Input type="url" name="linkedin" disabled={isSubmitting} />
+            <Input
+              type="url"
+              name="linkedin"
+              defaultValue={socialMedia?.linkedin || ''}
+              placeholder="LinkedIn"
+              disabled={isSubmitting}
+              pattern="https://(www\.)?linkedin\.com/.*"
+              title="Informe uma URL do LinkedIn"
+            />
           </div>
           <div className="flex items-center gap-4 w-full">
             <Twitter />
-            <Input type="url" name="twitter" disabled={isSubmitting} />
+            <Input
+              type="url"
+              name="twitter"
+              defaultValue={socialMedia?.twitter || ''}
+              placeholder="Twitter"
+              disabled={isSubmitting}
+              pattern="https://(www\.)?twitter\.com/.*"
+              title="Informe uma URL do Twitter"
+            />
           </div>
         </div>
 
