@@ -6,12 +6,13 @@ export interface Profile {
   totalVisits: number
   link: string
   createdAt: number // timestamp
-  socialMedia: {
+  socialMedia?: {
     github: string
     instagram: string
     linkedin: string
     twitter: string
   }
+  customLinks?: Array<{ title: string; url: string }>
 }
 
 export async function getProfileData(
@@ -29,6 +30,7 @@ export async function getProfileData(
     createdAt: profile.createdAt,
     socialMedia: profile.socialMedia,
     link: profile.link,
+    customLinks: profile.customLinks,
   }
 }
 
@@ -56,5 +58,6 @@ export async function getProfileDataByUserId(
     createdAt: profile.createdAt,
     socialMedia: profile.socialMedia,
     link: profile.link,
+    customLinks: profile.customLinks,
   }
 }

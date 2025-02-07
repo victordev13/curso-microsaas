@@ -42,3 +42,10 @@ export async function compressImage(file: File) {
     fileType: 'image/png',
   })
 }
+
+export function parseUrl(
+  raw: string,
+  defaultScheme: 'https' | 'http' = 'https',
+) {
+  return raw?.startsWith('http') ? raw : `${defaultScheme}://${raw}`
+}

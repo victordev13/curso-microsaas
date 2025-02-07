@@ -1,6 +1,6 @@
 'use client'
 /* eslint-disable @next/next/no-img-element */
-import { mergeClasses } from '@/app/lib/utils'
+import { mergeClasses, parseUrl } from '@/app/lib/utils'
 import Link from 'next/link'
 
 interface ProjectCardProps {
@@ -20,11 +20,7 @@ export function ProjectCard({
   projectImage,
   isOwner,
 }: ProjectCardProps) {
-  const projectUrl = project.projectUrl
-    ? project.projectUrl?.startsWith('http')
-      ? project.projectUrl
-      : `https://${project.projectUrl}`
-    : null
+  const projectUrl = project.projectUrl ? parseUrl(project.projectUrl) : null
 
   function handleClickProject() {
     // TODO: Implementar contagem de cliques

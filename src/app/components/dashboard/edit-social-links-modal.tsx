@@ -16,7 +16,7 @@ export type SocialMedia = {
   twitter?: string
 }
 
-interface NewProjectModalProps {
+interface EditSocialLinksModalProps {
   isModalOpen: boolean
   onModalClose: () => void
   socialMedia: SocialMedia
@@ -28,7 +28,7 @@ export function EditSocialLinksModal({
   isModalOpen,
   onModalClose,
   socialMedia,
-}: NewProjectModalProps) {
+}: EditSocialLinksModalProps) {
   const [error, setError] = useState<string | null>(null)
 
   const router = useRouter()

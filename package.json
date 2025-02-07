@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check-ts": "npx tsc --noEmit"
   },
   "dependencies": {
     "@auth/firebase-adapter": "^2.7.4",

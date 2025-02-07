@@ -1,10 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { Github, Instagram, Linkedin, Plus, Twitter } from 'lucide-react'
+import { Github, Instagram, Linkedin, Twitter } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Hr } from '@/app/components/ui/hr'
 import { EditSocialLinksButton } from '@/app/components/dashboard/edit-social-links-button'
 import Link from 'next/link'
 import { Profile } from '@/app/services/get-profile-data'
+import { AddCustomLinkButton } from '../dashboard/add-custom-link-button'
+import { parseUrl } from '@/app/lib/utils'
 
 const socialMediaIcons = {
   github: Github,
@@ -20,7 +22,7 @@ export function UserCard({
 }: {
   isOwner?: boolean
   isEditable?: boolean
-  profileData: Profile
+  profileData?: Profile
 }) {
   return (
     <div className="w-[389px] flex flex-col gap-5 items-center p-10 border border-white border-opacity-10 bg-[#121212] rounded-3xl text-white">
@@ -90,7 +92,7 @@ export function UserCard({
                 <Icon />
               </button>
             ))}
-          {isEditable && isOwner && (
+          {isEditable && isOwner && profileData?.socialMedia && (
             <EditSocialLinksButton socialMedia={profileData.socialMedia} />
           )}
         </div>
@@ -98,10 +100,20 @@ export function UserCard({
       </div>
       <div className="flex flex-col gap-3 w-full">
         <div className="w-full flex flex-col items-center gap-5">
-          <Button className="w-full">Template SaaS - Compre Agora</Button>
-          <button className="p-3 rounded-xl bg-[#1E1E1E] hover:bg-[#2E2E2E]">
-            <Plus />
-          </button>
+          <Link href="" target="_blank" className="w-full">
+            <Button className="w-full">Template SaaS - Compre Agora</Button>
+          </Link>
+          {profileData?.customLinks?.map((customLink) => (
+            <Link
+              href={parseUrl(customLink.url)}
+              target="_blank"
+              key={customLink.url}
+              className="w-full"
+            >
+              <Button className="w-full">{customLink.title}</Button>
+            </Link>
+          ))}
+          {isEditable && isOwner && profileData && <AddCustomLinkButton />}
         </div>
       </div>
     </div>
