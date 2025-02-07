@@ -11,7 +11,7 @@ export async function registerLink(link: string) {
 
   try {
     await db.collection('profiles').doc(link).set({
-      userId: 0,
+      userId: session.user.id,
       link,
       totalVisits: 0,
       createdAt: Timestamp.now().toMillis(),
