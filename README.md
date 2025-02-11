@@ -5,7 +5,7 @@ This is a Micro Saas project developed during the Micro Saas course by Rocketsea
 The objective of this project is to provide an page for developers to showcase their projects.
 
 ## Built With
-- [Next.js](https://nextjs.org/)
+- [Next.js v15](https://nextjs.org/) and [ReactJS v19](https://react.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Firebase](https://firebase.google.com/)
 
