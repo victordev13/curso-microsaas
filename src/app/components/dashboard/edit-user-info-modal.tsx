@@ -103,9 +103,7 @@ export function EditUserInfoModal({
       >
         <p className="text-white font-bold text-xl">Editar perfil</p>
         <div className="flex gap-10">
-          {error && (
-            <span className="text-accent-pink">{formState?.error}</span>
-          )}
+          {error && <span className="text-accent-pink">{error}</span>}
           <div className="flex flex-col items-center gap-3 text-xs">
             <div className="w-[100px] h-[100px] rounded-xl bg-background-tertiary overflow-hidden">
               {profilePicturePreview ? (
