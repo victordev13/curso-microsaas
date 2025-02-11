@@ -6,8 +6,15 @@ The objective of this project is to provide an page for developers to showcase t
 
 ## Built With
 - [Next.js v15](https://nextjs.org/) and [ReactJS v19](https://react.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Firebase](https://firebase.google.com/)
+- [Tailwind CSS](https://tailwindcss.com/) (UI)
+- [Firebase](https://firebase.google.com/) (Database and storage)
+- [Auth.js](https://authjs.dev/) (Google Authentication)
+
+## Requirements
+ - [Setup Firebase Cloud Firestore](https://firebase.google.com/docs/firestore?hl=pt-br)
+   - [Export Firebase Credentials](https://firebase.google.com/docs/admin/setup?hl=pt&authuser=0)
+ - [Setup Firebase Cloud Storage](https://firebase.google.com/docs/storage?hl=pt-br)
+   - Get Firebase bucket name
 
 ## Getting Started
 Follow the steps below to set up the project locally:
@@ -24,11 +31,16 @@ Follow the steps below to set up the project locally:
   ```sh
   pnpm install
   ```
-4. Start the development server:
+4. Create and configure the `.env` file:
+  ```sh
+  cp .env.dist .env
+  # Edit the .env file with your Firebase credentials
+  ```
+5. Start the development server:
   ```sh
   pnpm run dev
   ```
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Screenshots
 
