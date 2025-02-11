@@ -1,6 +1,6 @@
 'use server'
 
-import { db, storage } from '@/app/lib/firebase'
+import { db, uploadFile } from '@/app/lib/firebase'
 import { auth } from '@/app/lib/auth'
 import { Timestamp } from 'firebase-admin/firestore'
 import { randomUUID } from 'node:crypto'
@@ -27,9 +27,13 @@ export async function createProject(payload: CreateProjectPayload) {
     profileId,
   } = payload
 
-  const uploadedImage = await uploadImage(profileId, projectImage)
-
   try {
+    const uploadedImage = await uploadFile({
+      file: projectImage,
+      fileName: randomUUID(),
+      filePath: `projects-images/${profileId}`,
+    })
+
     await db.collection('projects').doc(profileId).collection('projects').add({
       userId: session.user.id,
       projectName,
@@ -42,21 +46,4 @@ export async function createProject(payload: CreateProjectPayload) {
   } catch (error) {
     return { error }
   }
-}
-
-async function uploadImage(
-  profileId: string,
-  file: File,
-): Promise<{ path: string }> {
-  const imageRandomId = randomUUID()
-  const storageRef = storage.file(
-    `projects-images/${profileId}/${imageRandomId}`,
-  )
-
-  const projectImageBuffer = Buffer.from(await file.arrayBuffer())
-  await storageRef.save(projectImageBuffer)
-
-  const imagePath = storageRef.name
-
-  return { path: imagePath }
 }

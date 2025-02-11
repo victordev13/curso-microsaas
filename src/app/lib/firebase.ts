@@ -30,3 +30,22 @@ export async function getFileURL(filePath: string) {
 
   return url
 }
+
+export async function uploadFile({
+  filePath,
+  fileName,
+  file,
+}: {
+  filePath: string
+  fileName: string
+  file: File
+}): Promise<{ path: string }> {
+  const storageRef = storage.file(`${filePath.replace(/\/+$/, '')}/${fileName}`)
+
+  const projectImageBuffer = Buffer.from(await file.arrayBuffer())
+  await storageRef.save(projectImageBuffer)
+
+  const imagePath = storageRef.name
+
+  return { path: imagePath }
+}

@@ -31,3 +31,7 @@ Follow the steps below to set up the project locally:
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Screenshots
+
+## TODO
+ - [ ] Allow to edit or remove user card custom links
+ - [ ] Allow to edit or remove projects

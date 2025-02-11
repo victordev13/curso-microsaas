@@ -7,6 +7,8 @@ import Link from 'next/link'
 import { Profile } from '@/app/services/get-profile-data'
 import { AddCustomLinkButton } from '../dashboard/add-custom-link-button'
 import { parseUrl } from '@/app/lib/utils'
+import { EditUserInfoButton } from '../dashboard/edit-user-info-button'
+import { getFileURL } from '@/app/lib/firebase'
 
 const socialMediaIcons = {
   github: Github,
@@ -15,7 +17,7 @@ const socialMediaIcons = {
   twitter: Twitter,
 }
 
-export function UserCard({
+export async function UserCard({
   isOwner = false,
   isEditable = false,
   profileData,
@@ -24,23 +26,36 @@ export function UserCard({
   isEditable?: boolean
   profileData?: Profile
 }) {
+  const profilePictureUrl = profileData?.profilePicturePath
+    ? await getFileURL(profileData?.profilePicturePath)
+    : undefined
+
   return (
     <div className="w-[389px] flex flex-col gap-5 items-center p-10 border border-white border-opacity-10 bg-[#121212] rounded-3xl text-white">
       <div className="size-48">
         <img
-          src="/me.jpg"
-          alt="victordev"
+          src={profilePictureUrl || '/me.jpg'}
+          alt={profileData?.name || 'Seu nome'}
           className="rounded-full object-cover w-full h-full"
         />
       </div>
       <div className="flex flex-col gap-2 w-full">
         <div className="flex items-center gap-2">
           <h3 className="text-3xl font-bold min-w-0 overflow-hidden">
-            victordev
+            {profileData?.name || 'Seu nome'}
           </h3>
+          {isEditable && isOwner && (
+            <EditUserInfoButton
+              profileData={{
+                name: profileData?.name,
+                description: profileData?.description,
+                profilePictureUrl,
+              }}
+            />
+          )}
         </div>
         <p className="opacity-40">
-          &quot;Eu faço produtos para a Internet&quot;
+          {profileData?.description || 'Eu faço produtos para a Internet'}
         </p>
       </div>
       <Hr />

@@ -109,14 +109,18 @@ export function NewProjectModal({
                   className="object-cover object-center"
                 />
               ) : (
-                <button className="w-full h-full">100x100</button>
+                <label htmlFor="projectImage">
+                  <div className="flex justify-center items-center w-full h-full cursor-pointer transition-colors hover:text-gray-200">
+                    100x100
+                  </div>
+                </label>
               )}
             </div>
             <label htmlFor="projectImage">
-              <span className="text-white flex items-center gap-2">
+              <div className="text-white flex items-center gap-2 cursor-pointer transition-colors hover:text-gray-200">
                 <ArrowUpFromLine className="size-4" />
                 <span>Adicionar imagem</span>
-              </span>
+              </div>
             </label>
             <input
               type="file"
