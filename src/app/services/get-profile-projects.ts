@@ -14,7 +14,7 @@ export interface Project {
 
 export async function getProfileProjects(profileId: string) {
   const snapshot = await db
-    .collection('projects')
+    .collection('profiles')
     .doc(profileId)
     .collection('projects')
     .get()
