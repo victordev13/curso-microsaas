@@ -28,7 +28,7 @@ export function Hero() {
         <div className="relative">
           <UserCard isOwner={false} isEditable={false} />
           <div className="absolute -bottom-[7%] -right-[45%]">
-            <TotalVisits />
+            <TotalVisits totalVisits={1234} />
           </div>
           <div className="absolute top-[20%] -left-[45%] -z-10">
             <ProjectCard

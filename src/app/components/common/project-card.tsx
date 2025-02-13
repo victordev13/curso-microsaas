@@ -1,10 +1,14 @@
 'use client'
 /* eslint-disable @next/next/no-img-element */
+
+import { increaseProjectVisits } from '@/app/actions/increase-project-visits'
 import { mergeClasses, parseUrl } from '@/app/lib/utils'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 interface ProjectCardProps {
   project: {
+    id?: string
     projectName: string
     projectDescription: string
     projectUrl?: string
@@ -22,8 +26,15 @@ export function ProjectCard({
 }: ProjectCardProps) {
   const projectUrl = project.projectUrl ? parseUrl(project.projectUrl) : null
 
-  function handleClickProject() {
-    // TODO: Implementar contagem de cliques
+  const routeParams = useParams()
+
+  async function handleClickProject() {
+    if (isOwner || !project.id || !routeParams.profileId) return
+
+    await increaseProjectVisits({
+      profileId: String(routeParams.profileId),
+      projectId: project.id,
+    })
   }
 
   return (
@@ -50,13 +61,13 @@ export function ProjectCard({
         <div className="flex flex-col gap-2">
           {isOwner && (
             <span className="uppercase text-xs font-bold text-accent-green">
-              {project.totalVisits || 0} cliques
+              {project.totalVisits || 0} clique(s)
             </span>
           )}
           <div className="flex flex-col">
             <span className="text-white font-bold">{project.projectName}</span>
             <span className="text-content-body text-sm">
-              {project.projectDescription}
+              {`${project.projectDescription.substring(0, 70)}...`}
             </span>
           </div>
         </div>

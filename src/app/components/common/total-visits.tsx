@@ -2,7 +2,11 @@ import { mergeClasses } from '@/app/lib/utils'
 import { TrendingUp } from 'lucide-react'
 import { Hr } from '@/app/components/ui/hr'
 
-export function TotalVisits() {
+interface TotalVisits {
+  totalVisits: number
+}
+
+export function TotalVisits({ totalVisits }: TotalVisits) {
   return (
     <div
       className={mergeClasses(
@@ -13,7 +17,7 @@ export function TotalVisits() {
     >
       <span className="font-bold text-white">Total de visitas</span>
       <div className="flex items-center gap-2 text-accent-green">
-        <span className="text-3xl font-bold">1234</span>
+        <span className="text-3xl font-bold">{totalVisits}</span>
         <TrendingUp />
       </div>
       <Hr orientation="vertical" />

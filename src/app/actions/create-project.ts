@@ -28,20 +28,28 @@ export async function createProject(payload: CreateProjectPayload) {
   } = payload
 
   try {
+    const generatedId = randomUUID()
+
     const uploadedImage = await uploadFile({
       file: projectImage,
-      fileName: randomUUID(),
+      fileName: generatedId,
       filePath: `projects-images/${profileId}`,
     })
 
-    await db.collection('profiles').doc(profileId).collection('projects').add({
-      userId: session.user.id,
-      projectName,
-      projectDescription,
-      projectUrl,
-      imagePath: uploadedImage.path,
-      createdAt: Timestamp.now().toMillis(),
-    })
+    await db
+      .collection('profiles')
+      .doc(profileId)
+      .collection('projects')
+      .doc(generatedId)
+      .set({
+        id: generatedId,
+        userId: session.user.id,
+        projectName,
+        projectDescription,
+        projectUrl,
+        imagePath: uploadedImage.path,
+        createdAt: Timestamp.now().toMillis(),
+      })
     return { success: true }
   } catch (error) {
     return { error }

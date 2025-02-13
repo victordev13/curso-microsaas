@@ -8,6 +8,7 @@ import { auth } from '@/app/lib/auth'
 import { NewProjectButton } from '@/app/components/dashboard/new-project-button'
 import { getProfileProjects } from '@/app/services/get-profile-projects'
 import { getFileURL } from '@/app/lib/firebase'
+import { increaseProfileVisits } from '@/app/actions/increase-profile-visits'
 
 interface DashboardProps {
   params: Promise<{ profileId: string }>
@@ -25,20 +26,25 @@ export default async function Dashboard({ params }: DashboardProps) {
   const isOwner = session?.user?.id === profileData.userId
 
   const projects = await getProfileProjects(profileId)
-  // TODO: get total visits
+
+  if (!isOwner) {
+    await increaseProfileVisits({ profileId })
+  }
   // TODO: redirect to upgrade if trial is ended
 
   return (
     <div className="relative h-screen p-20 flex overflow-hidden">
-      <div className="fixed top-0 left-0 w-full flex justify-center items-center gap-1 py-2 bg-background-tertiary">
-        <span>Você está usando a versão de testes.</span>
-        <Link
-          href={`/${profileId}/upgrade`}
-          className="text-accent-green font-bold"
-        >
-          Fazer upgrade
-        </Link>
-      </div>
+      {isOwner && (
+        <div className="fixed top-0 left-0 w-full flex justify-center items-center gap-1 py-2 bg-background-tertiary">
+          <span>Você está usando a versão de testes.</span>
+          <Link
+            href={`/${profileId}/upgrade`}
+            className="text-accent-green font-bold"
+          >
+            Fazer upgrade
+          </Link>
+        </div>
+      )}
       <div className="w-1/2 flex justify-center h-min">
         <UserCard
           isOwner={isOwner}
@@ -58,7 +64,7 @@ export default async function Dashboard({ params }: DashboardProps) {
         {isOwner && <NewProjectButton profileId={profileId} />}
       </div>
       <div className="absolute bottom-4 right-0 left-0  w-min mx-auto">
-        <TotalVisits />
+        {isOwner && <TotalVisits totalVisits={profileData.totalVisits} />}
       </div>
     </div>
   )
