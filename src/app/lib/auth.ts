@@ -8,4 +8,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     credential: firebaseCert,
   }),
   providers: [Google],
+  events: {},
+  callbacks: {},
 })
