@@ -85,9 +85,13 @@ Follow the steps below to set up the project locally:
   ```
 5. Start the development server:
   ```sh
-  pnpm run dev
+  pnpm dev
   ```
-6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+6. Start the local stripe webhook:
+  ```sh
+  pnpm webhook:run
+  ```
+7. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Screenshots
 
