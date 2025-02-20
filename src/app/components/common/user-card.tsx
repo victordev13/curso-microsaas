@@ -34,7 +34,7 @@ export async function UserCard({
     <div className="w-[389px] flex flex-col gap-5 items-center p-10 border border-white border-opacity-10 bg-[#121212] rounded-3xl text-white">
       <div className="size-48">
         <img
-          src={profilePictureUrl || '/me.jpg'}
+          src={profilePictureUrl || '/me.png'}
           alt={profileData?.name || 'Seu nome'}
           className="rounded-full object-cover w-full h-full"
         />
