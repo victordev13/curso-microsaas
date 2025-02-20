@@ -4,13 +4,18 @@ import { verifyLinkIsAlreadyTaken } from '@/app/actions/verify-link-is-already-t
 import { Button } from '@/app/components/ui/button'
 import { Input } from '@/app/components/ui/input'
 import { sanitizeUrlPath } from '@/app/lib/utils'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useActionState, useRef, useState } from 'react'
 
 export function CreateLinkForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
 
-  const [link, setLink] = useState<string | null>(null)
+  const [link, setLink] = useState<string | null>(
+    searchParams.get('link')
+      ? sanitizeUrlPath(searchParams.get('link') as string)
+      : null,
+  )
   const [error, setError] = useState<string | null>(null)
 
   const inputRef = useRef<HTMLInputElement | null>(null)

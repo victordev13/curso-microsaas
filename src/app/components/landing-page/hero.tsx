@@ -1,8 +1,7 @@
 import { ProjectCard } from '../common/project-card'
 import { TotalVisits } from '../common/total-visits'
 import { UserCard } from '../common/user-card'
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
+import { CreateNow } from '../dashboard/create-now'
 
 export function Hero() {
   return (
@@ -17,11 +16,7 @@ export function Hero() {
           <br />
           Acompanhe o engajamento com Analytics de cliques
         </h2>
-        <div className="flex items-center gap-2 w-full mt-24">
-          <span className="text-white text-xl">soueu.dev/</span>
-          <Input placeholder="Seu link" />
-          <Button>Criar agora</Button>
-        </div>
+        <CreateNow />
       </div>
 
       <div className="w-full flex items-center justify-center bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_55%)]">
