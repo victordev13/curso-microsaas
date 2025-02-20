@@ -2,13 +2,13 @@ import { Rocket } from 'lucide-react'
 import { Header } from '@/app/components/landing-page/header'
 import { CreateLinkForm } from '@/app/components/dashboard/create-link-form'
 import { getProfileDataByUserId } from '@/app/services/get-profile-data'
-import { redirect, unauthorized } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { auth } from '@/app/lib/auth'
 
 export default async function Criar() {
   const session = await auth()
   if (!session?.user?.id) {
-    return unauthorized()
+    return redirect('/')
   }
 
   const profileData = await getProfileDataByUserId(session.user.id)
