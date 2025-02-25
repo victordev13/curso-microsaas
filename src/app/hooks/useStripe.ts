@@ -32,10 +32,23 @@ export function useStripe() {
         sessionId: data.sessionId,
       })
     } catch (error) {
-      console.log(error)
+      console.error(error)
       return { error }
     }
   }
 
-  return { createStripeCheckout }
+  async function handleCreateStripePortal() {
+    const response = await fetch('/api/stripe/create-portal', {
+      method: 'POST',
+    })
+
+    const body = await response.json()
+    if (response.status !== 200) {
+      throw new Error(body.error)
+    }
+
+    return body.url
+  }
+
+  return { createStripeCheckout, handleCreateStripePortal }
 }

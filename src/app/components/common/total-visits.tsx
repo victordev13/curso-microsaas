@@ -1,12 +1,27 @@
+'use server'
+
 import { mergeClasses } from '@/app/lib/utils'
 import { TrendingUp } from 'lucide-react'
 import { Hr } from '@/app/components/ui/hr'
+import { signOut } from '@/app/lib/auth'
+import { PortalButton } from '../dashboard/portal-button'
 
 interface TotalVisits {
   totalVisits: number
+  showActionsBar?: boolean
+  showPortalButton?: boolean
 }
 
-export function TotalVisits({ totalVisits }: TotalVisits) {
+export async function TotalVisits({
+  totalVisits,
+  showActionsBar = false,
+  showPortalButton,
+}: TotalVisits) {
+  async function handleLogout() {
+    'use server'
+    await signOut({ redirectTo: '/' })
+  }
+
   return (
     <div
       className={mergeClasses(
@@ -21,10 +36,12 @@ export function TotalVisits({ totalVisits }: TotalVisits) {
         <TrendingUp />
       </div>
       <Hr orientation="vertical" />
-      <div className="flex items-center gap-2">
-        <button>Portal</button>
-        <button>Sair</button>
-      </div>
+      {showActionsBar && (
+        <div className="flex items-center gap-2">
+          {showPortalButton && <PortalButton />}
+          <button onClick={handleLogout}>Sair</button>
+        </div>
+      )}
     </div>
   )
 }

@@ -67,7 +67,13 @@ export default async function Dashboard({ params }: DashboardProps) {
         {isOwner && <NewProjectButton profileId={profileId} />}
       </div>
       <div className="absolute bottom-4 right-0 left-0  w-min mx-auto">
-        {isOwner && <TotalVisits totalVisits={profileData.totalVisits} />}
+        {isOwner && (
+          <TotalVisits
+            totalVisits={profileData.totalVisits}
+            showActionsBar
+            showPortalButton
+          />
+        )}
       </div>
     </div>
   )
