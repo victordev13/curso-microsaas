@@ -3,7 +3,7 @@ import { ProjectCard } from '../../components/common/project-card'
 import { TotalVisits } from '../../components/common/total-visits'
 import { UserCard } from '../../components/common/user-card'
 import { getProfileData } from '@/app/services/get-profile-data'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { auth } from '@/app/lib/auth'
 import { NewProjectButton } from '@/app/components/dashboard/new-project-button'
 import { getProfileProjects } from '@/app/services/get-profile-projects'
@@ -30,11 +30,14 @@ export default async function Dashboard({ params }: DashboardProps) {
   if (!isOwner) {
     await increaseProfileVisits({ profileId })
   }
-  // TODO: redirect to upgrade if trial is ended
+
+  if (isOwner && !session?.user.isTrial && !session?.user.isSubscribed) {
+    redirect(`/${profileId}/upgrade`)
+  }
 
   return (
     <div className="relative h-screen p-20 flex overflow-hidden">
-      {isOwner && (
+      {isOwner && session?.user.isTrial && !session.user.isSubscribed && (
         <div className="fixed top-0 left-0 w-full flex justify-center items-center gap-1 py-2 bg-background-tertiary">
           <span>Você está usando a versão de testes.</span>
           <Link

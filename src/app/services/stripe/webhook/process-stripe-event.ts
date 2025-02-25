@@ -2,6 +2,7 @@ import stripe from '@/app/lib/stripe'
 import WebhookError, { ErrorType } from './WebhookError'
 import { db } from '@/app/lib/firebase'
 import Stripe from 'stripe'
+import { Timestamp } from 'firebase-admin/firestore'
 
 export async function processStripeEvent(
   body: string,
@@ -66,7 +67,7 @@ async function processPaimentCompleted(
 
   await db.collection('users').doc(userId).update({
     isSubscribed: true,
-    paidAt: new Date(),
+    paidAt: Timestamp.now().toMillis(),
   })
 }
 
