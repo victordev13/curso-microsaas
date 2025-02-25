@@ -1,15 +1,24 @@
-# Micro Saas - Project in Bio
+# Micro Saas - Sou Eu Dev "Project in Bio"
 
 ## Description
 This is a Micro Saas project developed during the Micro Saas course by Rocketseat.
 The objective of this project is to provide an page for developers to showcase their projects.
 
 ## Built With
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=white)](https://firebase.google.com/)
+[![Auth.js](https://img.shields.io/badge/Auth.js-000000?style=flat&logo=auth0&logoColor=white)](https://authjs.dev/)
+[![Stripe](https://img.shields.io/badge/Stripe-008CDD?style=flat&logo=stripe&logoColor=white)](https://stripe.com/)
+[![Lucide](https://img.shields.io/badge/Lucide-000000?style=flat&logo=lucide&logoColor=white)](https://lucide.dev)
+
 - [Next.js v15](https://nextjs.org/) and [ReactJS v19](https://react.dev/)
 - [Tailwind CSS](https://tailwindcss.com/) (UI)
 - [Firebase](https://firebase.google.com/) (Database and storage)
 - [Auth.js](https://authjs.dev/) (Authentication with Google)
 - [Stripe](https://stripe.com/) (Payment gateway)
+- [Lucide](https://lucide.dev) (Icons)
 
 ## Requirements
 
@@ -94,6 +103,15 @@ Follow the steps below to set up the project locally:
 7. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Screenshots
+![FireShot Capture 001 -  -  localhost](https://github.com/user-attachments/assets/d04b9759-7453-4943-8a98-225dbc33338e)
+![FireShot Capture 002 -  -  localhost](https://github.com/user-attachments/assets/5d66b728-e41e-4842-83ec-97697a92030f)
+![FireShot Capture 003 -  -  localhost](https://github.com/user-attachments/assets/0b03ea6c-b099-4c83-87bf-fd9441a917bd)
+![FireShot Capture 004 -  -  localhost](https://github.com/user-attachments/assets/5a6f2449-d900-4096-b118-e22b6e27affb)
+![FireShot Capture 005 -  -  localhost](https://github.com/user-attachments/assets/716cb8e5-db92-47b7-be52-74ee195bf658)
+![2025-02-20_20-02](https://github.com/user-attachments/assets/2ae50488-95da-456a-96d9-bfae34989e12)
+![2025-02-20_20-05](https://github.com/user-attachments/assets/63ace6d2-d321-444d-814a-70c0a618c81e)
+
+
 
 ## TODO
  - [ ] Allow to edit or remove user card custom links
