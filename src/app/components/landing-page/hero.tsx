@@ -3,16 +3,29 @@ import { TotalVisits } from '../common/total-visits'
 import { UserCard } from '../common/user-card'
 import { CreateNow } from '../dashboard/create-now'
 
-export function Hero() {
+interface HeroProps {
+  title?: string
+  description?: string
+}
+
+export function Hero({
+  title: pageTitle,
+  description: pageDescription,
+}: HeroProps) {
   return (
     <div className="flex h-screen max-h-[1366px]">
       <div className="w-full flex flex-col gap-2 mt-[min(35vh,500px)]">
         <h1 className="text-5xl font-bold text-white leading-[64px]">
-          Seus projetos e redes
-          <br /> sociais em um único link
+          {pageTitle || (
+            <>
+              Seus projetos e redes
+              <br /> sociais em um único link
+            </>
+          )}
         </h1>
-        <h2 className="text-xl leading-6">
-          Crie sua própria página de projetos e compartilhe eles com o mundo.
+        <h2 className="text-xl leading-7">
+          {pageDescription ||
+            'Crie sua própria página de projetos e compartilhe eles com o mundo.'}
           <br />
           Acompanhe o engajamento com Analytics de cliques
         </h2>

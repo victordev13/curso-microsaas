@@ -16,7 +16,7 @@ export function CreateNow() {
   }
 
   return (
-    <div className="flex items-center gap-2 w-full mt-24">
+    <div className="flex items-center gap-2 w-full mt-20">
       <span className="text-white text-xl">{APP_DOMAIN}/</span>
       <form action={handleCreateNow} className="flex items-center gap-2 w-ful">
         <Input
