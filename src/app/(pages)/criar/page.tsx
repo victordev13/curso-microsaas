@@ -1,6 +1,12 @@
 import { Rocket } from 'lucide-react'
 import { Header } from '@/app/components/landing-page/header'
 import { CreateLinkForm } from '@/app/components/dashboard/create-link-form'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'SouEuDev - Criar',
+  description: 'Crie seu link personalizado no SouEuDev.',
+}
 
 export default async function Criar() {
   return (

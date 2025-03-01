@@ -3,6 +3,7 @@ import { registerLink } from '@/app/actions/register-link'
 import { verifyLinkIsAlreadyTaken } from '@/app/actions/verify-link-is-already-taken'
 import { Button } from '@/app/components/ui/button'
 import { Input } from '@/app/components/ui/input'
+import { APP_DOMAIN } from '@/app/lib/config'
 import { sanitizeUrlPath } from '@/app/lib/utils'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useActionState, useRef, useState } from 'react'
@@ -60,7 +61,7 @@ export function CreateLinkForm() {
         action={createLinkAction}
         className="w-full flex items-center gap-2"
       >
-        <span className="text-white">soueu.dev/</span>
+        <span className="text-white">{APP_DOMAIN}/</span>
         <Input
           name="link"
           value={link || ''}

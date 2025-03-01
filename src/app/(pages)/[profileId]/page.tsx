@@ -9,9 +9,15 @@ import { NewProjectButton } from '@/app/components/dashboard/new-project-button'
 import { getProfileProjects } from '@/app/services/get-profile-projects'
 import { getFileURL } from '@/app/lib/firebase'
 import { increaseProfileVisits } from '@/app/actions/increase-profile-visits'
+import { Metadata } from 'next'
 
 interface DashboardProps {
   params: Promise<{ profileId: string }>
+}
+
+export const metadata: Metadata = {
+  title: 'SouEuDev - Perfil',
+  description: 'Veja o perfil e projetos do desenvolvedor no SouEuDev.',
 }
 
 export default async function Dashboard({ params }: DashboardProps) {
