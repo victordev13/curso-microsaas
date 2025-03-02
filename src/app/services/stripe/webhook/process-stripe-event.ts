@@ -3,6 +3,7 @@ import WebhookError, { ErrorType } from './WebhookError'
 import { db } from '@/app/lib/firebase'
 import Stripe from 'stripe'
 import { Timestamp } from 'firebase-admin/firestore'
+import { resend } from '@/app/lib/resend'
 
 export async function processStripeEvent(
   body: string,
@@ -51,7 +52,21 @@ async function handlePaymentBoleto(
     paymentIntent.next_action?.boleto_display_details?.hosted_voucher_url
   if (hostedVoucherUrl) {
     const userEmail = event.data.object.customer_details?.email
-    // TODO: Enviar email para o cliente com o boleto
+    const userName = event.data.object.customer_details?.name
+
+    if (userEmail) {
+      resend.emails.send({
+        from: String(process.env.EMAIL_FROM),
+        to:
+          process.env.NODE_ENV !== 'production'
+            ? String(process.env.RESEND_TEST_EMAIL)
+            : userEmail,
+        subject: 'SouEuDev - Seu boleto está disponível',
+        html:
+          `<p>Olá, ${userName}!</p>` +
+          `<p>Seu boleto está disponível: <a href="${hostedVoucherUrl}" target="_blank">Clique aqui para acessar o boleto</a>.</p>`,
+      })
+    }
   }
 }
 
