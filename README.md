@@ -12,6 +12,7 @@ The objective of this project is to provide an page for developers to showcase t
 [![Auth.js](https://img.shields.io/badge/Auth.js-000000?style=flat&logo=auth0&logoColor=white)](https://authjs.dev/)
 [![Stripe](https://img.shields.io/badge/Stripe-008CDD?style=flat&logo=stripe&logoColor=white)](https://stripe.com/)
 [![Lucide](https://img.shields.io/badge/Lucide-000000?style=flat&logo=lucide&logoColor=white)](https://lucide.dev)
+[![Resend](https://img.shields.io/badge/Resend-000000?style=flat&logo=resend&logoColor=white)](https://resend.com/)
 
 - [Next.js v15](https://nextjs.org/) and [ReactJS v19](https://react.dev/)
 - [Tailwind CSS](https://tailwindcss.com/) (UI)
@@ -19,6 +20,7 @@ The objective of this project is to provide an page for developers to showcase t
 - [Auth.js](https://authjs.dev/) (Authentication with Google)
 - [Stripe](https://stripe.com/) (Payment gateway)
 - [Lucide](https://lucide.dev) (Icons)
+- [Resend](https://resend.com/) (Email)
 
 ## Requirements
 
@@ -70,6 +72,18 @@ STRIPE_MONTHLY_PRICE_ID=
 STRIPE_PUBLIC_KEY=
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
+```
+
+#### Resend
+
+To use Resend for sending emails, you need to obtain your API key:
+
+1. [Go to the Resend website and create account](https://resend.com/)
+2. [Navigate to the API section to generate a new API key](https://resend.com/api-keys)
+
+Add it to your `.env` file:
+```env
+RESEND_API_KEY=
 ```
 
 ## Getting Started
